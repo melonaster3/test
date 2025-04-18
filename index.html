@@ -77,10 +77,11 @@
       window.addEventListener('message', (event) => {
         console.log(event.data)
         console.log(event.origin)
-        
-    if (event.origin !== 'https://saletest.queue-it.net') return;
+        console.log( document.getElementById('overlay'));
 
+    if (event.origin !== 'https://saletest.queue-it.net') return;
     if (event.data === 'queue-passed') {
+      console.log('here why arent u working')
       document.getElementById('overlay').style.display = 'none';
       console.log("✅ Queue completed, overlay closed.");
     }
