@@ -74,6 +74,19 @@
     window.onload = function () {
       console.log("✅ 페이지 및 SDK 로딩 완료");
 
+      window.addEventListener('message', (event) => {
+        console.log(event.data)
+        console.log(event.origin)
+        
+    if (event.origin !== 'https://saletest.queue-it.net') return;
+
+    if (event.data === 'queue-passed') {
+      document.getElementById('overlay').style.display = 'none';
+      console.log("✅ Queue completed, overlay closed.");
+    }
+  });
+
+
       document.getElementById('enroll-form').addEventListener('submit', function(e) {
         e.preventDefault();
         console.log("📌 수강 신청 버튼 클릭됨");
@@ -109,6 +122,10 @@
       }
     }
   
+
+
+
+    
   </script>
 </body>
 </html>
