@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>2025년 1학기 수강 신청</title>
+
+  <!-- Queue-it JavaScript SDK -->
+  <script type='text/javascript' src='https://static.queue-it.net/script/queueclient.min.js'></script>
+  <script
+     data-queueit-c='saletest'
+     type='text/javascript'
+     src='https://static.queue-it.net/script/queueconfigloader.min.js'>
+  </script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* Styles for the overlay and iframe */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .iframe-container {
+      position: relative;
+      width: 80%;
+      height: 80%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>2025년 1학기 수강 신청</h1>
+
+  <form id="enroll-form">
+    <label><input type="checkbox" name="courses" value="CS101"> 컴퓨터 개론</label>
+    <label><input type="checkbox" name="courses" value="MATH202"> 미적분</label>
+    <label><input type="checkbox" name="courses" value="PHYS303"> 일반 물리</label>
+    <br>
+    <button type="button" onclick="submitCourse()">수강 신청</button>
+  </form>
+
+  <!-- Overlay and iframe for the popup -->
+  <div class="overlay" id="overlay">
+    <div class="iframe-container">
+      <iframe id="queueIframe" src="" title="Queue-it"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // 모든 DOM 요소와 외부 스크립트가 로딩된 후 실행
+    window.onload = function () {
+      console.log("✅ 페이지 및 SDK 로딩 완료");
+
+      document.getElementById('enroll-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log("📌 수강 신청 버튼 클릭됨");
+
+        // 선택된 과목 추출
+        const selectedCourses = Array.from(document.querySelectorAll('input[name="courses"]:checked'))
+          .map(cb => cb.value);
+
+        if (selectedCourses.length === 0) {
+          alert("과목을 하나 이상 선택해주세요.");
+          return;
+        }
+
+        // Queue-it SDK가 로딩되었는지 확인
+        if (typeof QueueClient === 'undefined') {
+          alert("❌ Queue-it SDK가 아직 로딩되지 않았습니다.");
+          return;
+        }
+      });
+    };
+
+    async function submitCourse () {
+      try {
+        // Disable the rest of the page by showing the overlay
+        document.getElementById('overlay').style.display = 'flex';
+        
+        // Set the iframe's src to open the Queue-it page
+        const iframe = document.getElementById('queueIframe');
+        iframe.src = "https://saletest.queue-it.net/?c=saletest&e=javascript";
+      } catch (error) {
+        console.error("❌ 서버 요청 실패:", error);
+        alert("수강 신청 중 오류가 발생했습니다.");
+      }
+    }
+  
+  </script>
+</body>
+</html>
