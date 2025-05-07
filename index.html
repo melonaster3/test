@@ -132,6 +132,7 @@
 
 
     if (event.data == 'queue-passed') {
+      showPopup();
       document.getElementById('overlay').style.display = 'none';
       try {
       // Make the API call using urlCall and body
