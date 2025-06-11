@@ -59,7 +59,8 @@
     <label><input type="checkbox" name="courses" value="MATH202"> 미적분</label>
     <label><input type="checkbox" name="courses" value="PHYS303"> 일반 물리</label>
     <br>
-    <button id="testing" type="button" onclick="submitCourse()">수강 신청</button>
+    <button  type="button" onclick="submitCourse()">수강 신청</button>
+    <button id="testing" type="button" onclick="lol()">what</button>
   </form>
 
   <!-- Overlay and iframe for the popup -->
@@ -71,6 +72,8 @@
 
   <script>
     // 모든 DOM 요소와 외부 스크립트가 로딩된 후 실행
+    
+    const lol = () => console.log("yo what");
     window.onload = function () {
       console.log("✅ 페이지 및 SDK 로딩 완료");
 
