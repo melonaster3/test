@@ -104,8 +104,11 @@
   </div>
 
   <script>
-  QueueIt.validateUser();
 
+  window.onload = function () {
+    QueueIt.validateUser();
+  };
+  
     function openPopUp() {
         waitingRoomFinished = true;
         QueueIt.validateUser();
