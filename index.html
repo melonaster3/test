@@ -105,11 +105,19 @@
 
   <script>
 
+     
+if (document.cookie.includes("QueueITAccepted")) {
+     openPopUp();
+}
+
+
     function openPopUp() {
         waitingRoomFinished = true;
         QueueIt.validateUser();
         document.getElementById('popup').style.display = 'block';
     } 
+
+
 
       function closePopUp() {
         document.getElementById('popup').style.display = 'none';
