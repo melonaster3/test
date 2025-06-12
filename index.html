@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>2025년 1학기 수강 신청</title>
   <script>
-    var popup = false;
     var waitingRoomFinished = false;
-    var isPopup = false;
-  
   </script>
   <!-- Queue-it JavaScript SDK -->
   <script type='text/javascript' src='https://static.queue-it.net/script/queueclient.min.js'></script>
@@ -95,30 +92,30 @@
     <label><input type="checkbox" name="course" value="MATH202"> 미적분</label>
     <label><input type="checkbox" name="course" value="PHYS303"> 일반 물리</label>
     <br>
-    <button type="button" onclick="popUp()">수강 신청</button>
+    <button type="button" onclick="openPopUp()">수강 신청</button>
   </form>
 
    <!-- Hidden popup -->
    <div id="popup">
     <div id="popup-content">
       <p>팝업 내용입니다. 여기에 원하는 메시지를 넣으세요.</p>
-      <button onclick="popUp()">닫기</button>
+      <button onclick="closePopUp()">닫기</button>
     </div>
   </div>
 
   <script>
 
-    function popUp() {
-      if(isPopup) {
-        document.getElementById('popup').style.display = 'none';
-        isPopup = false;
-      } else{
+    function openPopUp() {
         waitingRoomFinished = true;
         QueueIt.validateUser();
         document.getElementById('popup').style.display = 'block';
-        isPopup = true;
-      }
-    }  
+    } 
+
+      function closePopUp() {
+        document.getElementById('popup').style.display = 'none';
+    }   
+
+
   </script>
 </body>
 </html>
