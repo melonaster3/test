@@ -29,6 +29,7 @@
     console.log("🟡 User is attempting to open popup.");
 
     if (!waitingRoomFinished) {
+      waitingRoomFinished = true;
       QueueIt.validateUser();
       console.log("🔁 Triggered QueueIt.validateUser()");
       return; 
