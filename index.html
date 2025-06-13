@@ -16,23 +16,25 @@
   <script>
   var waitingRoomFinished = false;
 
-  // ✅ Define your callback BEFORE calling validateUser
+  // Called only after the WR is passed
   QueueIt.onVerified = function(queueToken) {
-    console.log("✅ Queue passed! Token:", queueToken);
+    console.log("✅ Passed queue. Token:", queueToken);
     waitingRoomFinished = true;
-    document.getElementById('popup').style.display = 'block';
-    // 👉 You can also store queueToken or do further actions here
-  };
 
-  // ✅ Call validateUser ON LOAD
-  window.onload = function () {
-    console.log("Page loaded: validating user via Queue-it...");
-    QueueIt.validateUser(); // This triggers the Queue-it check & runs the onVerified if the token is present
+    // Show the popup *after* passing WR
+    document.getElementById('popup').style.display = 'block';
   };
 
   function openPopUp() {
-    console.log("openPopUp triggered");
-    QueueIt.validateUser(); // Not really needed if you're already validating on load
+    console.log("🟡 User is attempting to open popup.");
+
+    if (!waitingRoomFinished) {
+      QueueIt.validateUser();
+      console.log("🔁 Triggered QueueIt.validateUser()");
+      return; 
+    }
+
+    // If already passed WR
     document.getElementById('popup').style.display = 'block';
   }
 
