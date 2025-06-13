@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>2025년 1학기 수강 신청</title>
   <script>
+    var waitingRoomFinished = false;
   </script>
   <!-- Queue-it JavaScript SDK -->
   <script type='text/javascript' src='https://static.queue-it.net/script/queueclient.min.js'></script>
@@ -13,36 +14,7 @@
      src='https://static.queue-it.net/script/queueconfigloader.min.js'>
   </script>
 
-  <script>
-  var waitingRoomFinished = false;
-
-  // Called only after the WR is passed
-  QueueIt.onVerified = function(queueToken) {
-    console.log("✅ Passed queue. Token:", queueToken);
-    waitingRoomFinished = true;
-
-    // Show the popup *after* passing WR
-    document.getElementById('popup').style.display = 'block';
-  };
-
-  function openPopUp() {
-    console.log("🟡 User is attempting to open popup.");
-
-    if (!waitingRoomFinished) {
-      waitingRoomFinished = true;
-      QueueIt.validateUser();
-      console.log("🔁 Triggered QueueIt.validateUser()");
-      return; 
-    }
-
-    // If already passed WR
-    document.getElementById('popup').style.display = 'block';
-  }
-
-  function closePopUp() {
-    document.getElementById('popup').style.display = 'none';
-  }
-</script>
+  
 
   <style>
     body {
@@ -133,17 +105,20 @@
     </div>
   </div>
 
- <!--  <script>
-
+  <script>
   window.onload = function () {
-    console.log("hello!");
-    QueueIt.validateUser();
+   QueueIt.onVerified = function(queueToken) {
+    console.log("✅ Queue passed! Token:", queueToken);
+    waitingRoomFinished = true;
+    document.getElementById('popup').style.display = 'block';
+  };
   };
 
   function yo () {
     QueueIt.validateUser();
     console.log("YHAT")
   }
+
   yo();
     function openPopUp() {
         waitingRoomFinished = true;
@@ -157,6 +132,6 @@
         document.getElementById('popup').style.display = 'none';
     }   
 
-  </script> -->
+  </script>
 </body>
 </html>
