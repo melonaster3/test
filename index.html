@@ -106,20 +106,29 @@
   </div>
 
   <script>
-  window.onload = function () {
-   QueueIt.onVerified = function(queueToken) {
-    console.log("✅ Queue passed! Token:", queueToken);
-    waitingRoomFinished = true;
-    document.getElementById('popup').style.display = 'block';
-  };
-  };
 
-  function yo () {
-    QueueIt.validateUser();
-    console.log("YHAT")
-  }
+  function areQueueItParamsPresent() {
+  const requiredParams = [
+    'qitq',
+    'qitp',
+    'qitts',
+    'qitc',
+    'qite',
+    'qitrt',
+    'qith'
+  ];
 
-  yo();
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Check every required param exists and has a non-empty value
+  return requiredParams.every(param => urlParams.has(param) && urlParams.get(param) !== '');
+}
+
+if(areQueueItParamsPresent ()) {
+openPopUp();
+
+}
+
     function openPopUp() {
         waitingRoomFinished = true;
         QueueIt.validateUser();
