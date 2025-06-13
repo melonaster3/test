@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>2025년 1학기 수강 신청</title>
   <script>
-    var waitingRoomFinished = false;
   </script>
   <!-- Queue-it JavaScript SDK -->
   <script type='text/javascript' src='https://static.queue-it.net/script/queueclient.min.js'></script>
@@ -13,6 +12,34 @@
      type='text/javascript'
      src='https://static.queue-it.net/script/queueconfigloader.min.js'>
   </script>
+
+  <script>
+  var waitingRoomFinished = false;
+
+  // ✅ Define your callback BEFORE calling validateUser
+  QueueIt.onVerified = function(queueToken) {
+    console.log("✅ Queue passed! Token:", queueToken);
+    waitingRoomFinished = true;
+    document.getElementById('popup').style.display = 'block';
+    // 👉 You can also store queueToken or do further actions here
+  };
+
+  // ✅ Call validateUser ON LOAD
+  window.onload = function () {
+    console.log("Page loaded: validating user via Queue-it...");
+    QueueIt.validateUser(); // This triggers the Queue-it check & runs the onVerified if the token is present
+  };
+
+  function openPopUp() {
+    console.log("openPopUp triggered");
+    QueueIt.validateUser(); // Not really needed if you're already validating on load
+    document.getElementById('popup').style.display = 'block';
+  }
+
+  function closePopUp() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
 
   <style>
     body {
@@ -103,12 +130,18 @@
     </div>
   </div>
 
-  <script>
+ <!--  <script>
 
   window.onload = function () {
+    console.log("hello!");
     QueueIt.validateUser();
   };
-  
+
+  function yo () {
+    QueueIt.validateUser();
+    console.log("YHAT")
+  }
+  yo();
     function openPopUp() {
         waitingRoomFinished = true;
         QueueIt.validateUser();
@@ -121,6 +154,6 @@
         document.getElementById('popup').style.display = 'none';
     }   
 
-  </script>
+  </script> -->
 </body>
 </html>
