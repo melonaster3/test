@@ -125,6 +125,11 @@
          margin-right: 10px;
          cursor: pointer;
          }
+         .footer-button:disabled {
+         background-color: #ccc;
+         color: #666;
+         cursor: not-allowed;
+         }
          #popup {
          display: none;
          position: fixed;
@@ -324,19 +329,24 @@
              restoreAndSubmitForm();
             }
          }})
-         document.querySelectorAll('.options').forEach(group => {
+       document.querySelectorAll('.options').forEach(group => {
          group.addEventListener('click', function (e) {
-         const label = e.target.closest('label.option-box');
-         if (!label) return;
-         
-         const inputs = group.querySelectorAll('input[type="radio"]');
-         inputs.forEach(input => input.closest('label').classList.remove('selected'));
-         input.addEventListener('change', updateBuyButtonState);
-         label.classList.add('selected');
-         const input = label.querySelector('input[type="radio"]');
-         if (input) input.checked = true;
+            const label = e.target.closest('label.option-box');
+            if (!label) return;
+
+            const inputs = group.querySelectorAll('input[type="radio"]');
+            inputs.forEach(input => input.closest('label').classList.remove('selected'));
+
+            const input = label.querySelector('input[type="radio"]');
+            if (input) {
+               input.checked = true;
+               input.addEventListener('change', updateBuyButtonState);
+            }
+
+            label.classList.add('selected');
+            updateBuyButtonState(); // Ensure button updates on click
          });
-         });
+      });
       </script>
    </body>
 </html>
