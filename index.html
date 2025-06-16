@@ -259,6 +259,7 @@
          
          function openPopUp() {
            waitingRoomFinished = true;
+           waitingRoomFinished2 = false;
            QueueIt.validateUser();
          }
          
@@ -282,6 +283,7 @@
            localStorage.setItem('phoneFormData', JSON.stringify(formObject));
            
            // Trigger Queue-it validation
+           waitingRoomFinished = false;
            waitingRoomFinished2 = true;
            QueueIt.validateUser();
          }
