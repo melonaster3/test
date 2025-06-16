@@ -260,6 +260,7 @@
          function openPopUp() {
            waitingRoomFinished = true;
            waitingRoomFinished2 = false;
+           saveLocalStorage();
            QueueIt.validateUser();
          }
          
@@ -274,18 +275,21 @@
          function verifyAccount(event) {
            if (event) event.preventDefault(); // prevent form submission
            // Save form data to localStorage
-           const form = document.getElementById('phone-form');
-           const formData = new FormData(form);
-           const formObject = {};
-           for (const [key, value] of formData.entries()) {
-             formObject[key] = value;
-           }
-           localStorage.setItem('phoneFormData', JSON.stringify(formObject));
-           
+           saveLocalStorage();
            // Trigger Queue-it validation
            waitingRoomFinished = false;
            waitingRoomFinished2 = true;
            QueueIt.validateUser();
+         }
+
+         function saveLocalStorage() {
+         const form = document.getElementById('phone-form');
+         const formData = new FormData(form);
+         const formObject = {};
+         for (const [key, value] of formData.entries()) {
+            formObject[key] = value;
+         }
+         localStorage.setItem('phoneFormData', JSON.stringify(formObject));
          }
          
          function restoreAndSubmitForm() {
