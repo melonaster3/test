@@ -204,6 +204,10 @@
                      <input type="radio" name="storage" value="64GB" required class="visually-hidden">
                      64GB
                      </label>
+                     <label class="option-box">
+                     <input type="radio" name="storage" value="128GB" required class="visually-hidden">
+                     128GB
+                     </label>
                   </div>
                </div>
                <div class="section">
@@ -249,6 +253,7 @@
          }
          
          function openPopUp() {
+           event.preventDefault();
            waitingRoomFinished = true;
            QueueIt.validateUser();
          }
