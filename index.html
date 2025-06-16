@@ -234,7 +234,7 @@
          <div id="popup-content">
             <label>매장을 찾으세요</label>
             <input type="search" name="storeSearch" placeholder="매장명을 입력하세요" required />
-            <button id="close-popup">닫기</button>
+            <button onclick="closePopUp()">닫기</button>
          </div>
       </div>
       <!-- Scripts -->
@@ -308,7 +308,15 @@
            window.location.href = url;
          }
 
+         function updateBuyButtonState() {
+          const colorSelected = document.querySelector('input[name="color"]:checked');
+          const storageSelected = document.querySelector('input[name="storage"]:checked');
+          const buyButton = document.getElementById('buy-button');
+          buyButton.disabled = !(colorSelected && storageSelected);
+         }
+
         document.addEventListener('DOMContentLoaded', function () {
+        updateBuyButtonState();
         if(areQueueItParamsPresent ()) {
           if(waitingRoomName && waitingRoomName === "javascript") {
              openPopUp();
@@ -323,7 +331,7 @@
          
          const inputs = group.querySelectorAll('input[type="radio"]');
          inputs.forEach(input => input.closest('label').classList.remove('selected'));
-    
+         input.addEventListener('change', updateBuyButtonState);
          label.classList.add('selected');
          const input = label.querySelector('input[type="radio"]');
          if (input) input.checked = true;
