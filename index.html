@@ -158,6 +158,10 @@
       cursor: pointer;
       border-radius: 5px;
     }
+    .option-box.selected {
+    background-color: #e0e0e0;
+    border-color: #888;
+    }
   </style>
 </head>
 <body>
@@ -249,6 +253,18 @@ openPopUp();
       function closePopUp() {
     document.getElementById('popup').style.display = 'none';
     }   
+
+ document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.options').forEach(group => {
+      group.addEventListener('click', function (e) {
+        const clicked = e.target;
+        if (clicked.classList.contains('option-box')) {
+          group.querySelectorAll('.option-box').forEach(opt => opt.classList.remove('selected'));
+          clicked.classList.add('selected');
+        }
+      });
+    });
+  });
 
   </script>
 </body>
