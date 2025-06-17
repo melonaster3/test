@@ -321,7 +321,7 @@
         waitingRoomFinished = true;
         waitingRoomFinished2 = false;
         saveLocalStorage();
-        validatingUser.then(() => {
+        validatingUser().then(() => {
           open();
         });
       }
@@ -341,7 +341,7 @@
         // Trigger Queue-it validation
         waitingRoomFinished = false;
         waitingRoomFinished2 = true;
-        validatingUser.then(() => {
+        validatingUser().then(() => {
           submitForm();
         });
       }
