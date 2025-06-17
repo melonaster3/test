@@ -1,381 +1,450 @@
 <!DOCTYPE html>
 <html lang="ko">
-   <head>
-      <meta charset="UTF-8" />
-      <title>갤럭시 A16 자급제</title>
-      <!-- Global State -->
-      <script>
-         var waitingRoomFinished = false;
-         var waitingRoomFinished2 = false;
-         var waitingRoomName = '';
-      </script>
-      <!-- Queue-it JavaScript SDK -->
-      <script src="https://static.queue-it.net/script/queueclient.min.js"></script>
-      <script
-         data-queueit-c="saletest"
-         src="https://static.queue-it.net/script/queueconfigloader.min.js"></script>
-      <!-- Styles -->
-      <style>
-         body {
-         font-family: sans-serif;
-         margin: 0;
-         padding: 20px;
-         background: #f5f5f5;
-         }
-         .container {
-         display: flex;
-         max-width: 1200px;
-         margin: auto;
-         background: white;
-         padding: 20px;
-         gap: 20px;
-         }
-         .left-panel {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         gap: 10px;
-         }
-         .thumbs {
-         display: flex;
-         flex-direction: column;
-         gap: 5px;
-         }
-         .thumbs img {
-         width: 40px;
-         height: 60px;
-         object-fit: cover;
-         border: 1px solid #ccc;
-         }
-         .main-img img {
-         width: 250px;
-         height: 400px;
-         object-fit: cover;
-         border: 1px solid #ccc;
-         }
-         .right-panel {
-         flex: 1;
-         display: flex;
-         flex-direction: column;
-         gap: 10px;
-         }
-         .right-panel h1 {
-         font-size: 24px;
-         margin: 0;
-         }
-         .price {
-         font-size: 20px;
-         font-weight: bold;
-         color: #1e1e1e;
-         }
-         .button {
-         padding: 10px 20px;
-         background: black;
-         color: white;
-         border: none;
-         cursor: pointer;
-         }
-         .button.secondary {
-         background: #f0f0f0;
-         color: black;
-         }
-         .options {
-         display: flex;
-         gap: 10px;
-         margin: 10px 0;
-         }
-         .option-box {
-         border: 1px solid #ccc;
-         padding: 8px;
-         cursor: pointer;
-         }
-         .option-box.selected {
-         background-color: #e0e0e0;
-         border-color: #888;
-         }
-         .section {
-         padding: 10px 0;
-         border-top: 1px solid #ddd;
-         }
-         .footer-bar {
-         position: fixed;
-         bottom: 0;
-         left: 0;
-         width: 100%;
-         background-color: white;
-         border-top: 1px solid #ccc;
-         padding: 10px 0;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         z-index: 1000;
-         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
-         }
-         .footer-info {
-         font-size: 14px;
-         margin-left: 10px;
-         }
-         .footer-button {
-         background-color: #000;
-         color: white;
-         border: none;
-         padding: 10px 20px;
-         font-size: 16px;
-         border-radius: 4px;
-         margin-right: 10px;
-         cursor: pointer;
-         }
-         .footer-button:disabled {
-         background-color: #ccc;
-         color: #666;
-         cursor: not-allowed;
-         }
-         #popup {
-         display: none;
-         position: fixed;
-         z-index: 1000;
-         left: 0;
-         top: 0;
-         width: 100%;
-         height: 100%;
-         overflow: auto;
-         background-color: rgba(0, 0, 0, 0.5);
-         }
-         #popup-content {
-         background-color: #fff;
-         margin: 15% auto;
-         padding: 20px;
-         border: 1px solid #888;
-         width: 300px;
-         text-align: center;
-         border-radius: 10px;
-         }
-         #popup-content form {
-         display: flex;
-         flex-direction: column;
-         gap: 10px;
-         }
-         #close-popup {
-         background-color: #007bff;
-         color: white;
-         border: none;
-         padding: 10px 20px;
-         cursor: pointer;
-         border-radius: 5px;
-         }
-         .visually-hidden {
-         position: absolute;
-         width: 1px;
-         height: 1px;
-         margin: -1px;
-         padding: 0;
-         overflow: hidden;
-         clip: rect(0 0 0 0);
-         border: 0;
-}
-      </style>
-   </head>
-   <body>
-      <form id="phone-form">
-         <div class="container">
-            <div class="left-panel">
-               <div class="main-img">
-                  <img src="https://images.samsung.com/kdp/goods/2024/11/21/f5b9afd8-92ec-4ec7-8f85-783ad41f7382.png?$PD_GALLERY_L_PNG$" alt="Galaxy A16">
-               </div>
-               <div class="thumbs">
-                  <img src="https://images.samsung.com/kdp/goods/2024/11/21/f5b9afd8-92ec-4ec7-8f85-783ad41f7382.png?$PD_GALLERY_L_PNG$" alt="thumb1">
-               </div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>갤럭시 A16 자급제</title>
+    <!-- Global State -->
+    <script>
+      var waitingRoomFinished = false;
+      var waitingRoomFinished2 = false;
+      var waitingRoomName = "";
+    </script>
+    <!-- Queue-it JavaScript SDK -->
+    <script src="https://static.queue-it.net/script/queueclient.min.js"></script>
+    <script
+      data-queueit-c="saletest"
+      src="https://static.queue-it.net/script/queueconfigloader.min.js"
+    ></script>
+    <!-- Styles -->
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        gap: 20px;
+      }
+      .left-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .thumbs {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .thumbs img {
+        width: 40px;
+        height: 60px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+      }
+      .main-img img {
+        width: 250px;
+        height: 400px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+      }
+      .right-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .right-panel h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+      .price {
+        font-size: 20px;
+        font-weight: bold;
+        color: #1e1e1e;
+      }
+      .button {
+        padding: 10px 20px;
+        background: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .button.secondary {
+        background: #f0f0f0;
+        color: black;
+      }
+      .options {
+        display: flex;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .option-box {
+        border: 1px solid #ccc;
+        padding: 8px;
+        cursor: pointer;
+      }
+      .option-box.selected {
+        background-color: #e0e0e0;
+        border-color: #888;
+      }
+      .section {
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+      }
+      .footer-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ccc;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .footer-info {
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      .footer-button {
+        background-color: #000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .footer-button:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+      }
+      #popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      #popup-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        text-align: center;
+        border-radius: 10px;
+      }
+      #popup-content form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      #close-popup {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="phone-form">
+      <div class="container">
+        <div class="left-panel">
+          <div class="main-img">
+            <img
+              src="https://images.samsung.com/kdp/goods/2024/11/21/f5b9afd8-92ec-4ec7-8f85-783ad41f7382.png?$PD_GALLERY_L_PNG$"
+              alt="Galaxy A16"
+            />
+          </div>
+          <div class="thumbs">
+            <img
+              src="https://images.samsung.com/kdp/goods/2024/11/21/f5b9afd8-92ec-4ec7-8f85-783ad41f7382.png?$PD_GALLERY_L_PNG$"
+              alt="thumb1"
+            />
+          </div>
+        </div>
+        <div class="right-panel">
+          <h1>갤럭시 A16 자급제</h1>
+          <div class="price">₩293,000</div>
+          <div class="section">
+            <label>색상:</label>
+            <div class="options" id="color-options">
+              <label class="option-box">
+                <input
+                  type="radio"
+                  name="color"
+                  value="블랙"
+                  required
+                  class="visually-hidden"
+                />
+                블랙
+              </label>
+              <label class="option-box">
+                <input
+                  type="radio"
+                  name="color"
+                  value="그린"
+                  required
+                  class="visually-hidden"
+                />
+                그린
+              </label>
             </div>
-            <div class="right-panel">
-               <h1>갤럭시 A16 자급제</h1>
-               <div class="price">₩293,000</div>
-               <div class="section">
-                  <label>색상:</label>
-                  <div class="options" id="color-options">
-                     <label class="option-box">
-                     <input type="radio" name="color" value="블랙" required class="visually-hidden">
-                     블랙
-                     </label>
-                     <label class="option-box">
-                     <input type="radio" name="color" value="그린" required class="visually-hidden">
-                     그린
-                     </label>
-                  </div>
-               </div>
-               <div class="section">
-                  <label>저장 용량:</label>
-                  <div class="options" id="storage-options">
-                     <label class="option-box">
-                     <input type="radio" name="storage" value="64GB" required class="visually-hidden">
-                     64GB
-                     </label>
-                     <label class="option-box">
-                     <input type="radio" name="storage" value="128GB" required class="visually-hidden">
-                     128GB
-                     </label>
-                  </div>
-               </div>
-               <div class="">
-                  <button class="button">장바구니 담기</button>
-                  <button class="button secondary" type="button" onclick="openPopUp()">매장 픽업</button>
-               </div>
-               <div class="section">
-                  <p>배송: 일반배송</p>
-                  <p>결제 혜택: 삼성카드 결제시 최대 5% 할인</p>
-               </div>
+          </div>
+          <div class="section">
+            <label>저장 용량:</label>
+            <div class="options" id="storage-options">
+              <label class="option-box">
+                <input
+                  type="radio"
+                  name="storage"
+                  value="64GB"
+                  required
+                  class="visually-hidden"
+                />
+                64GB
+              </label>
+              <label class="option-box">
+                <input
+                  type="radio"
+                  name="storage"
+                  value="128GB"
+                  required
+                  class="visually-hidden"
+                />
+                128GB
+              </label>
             </div>
-         </div>
-         <!-- Footer Bar -->
-         <div class="footer-bar">
-            <div class="footer-info">
-               <strong>갤럭시 A16 자급제</strong><br>
-               ₩293,000 | 무료배송
-            </div>
-            <button class="footer-button" type="button" id="buy-button" disabled onclick="verifyAccount(event)">구매하기</button>
-         </div>
-      </form>
-      <!-- Store Search Popup -->
-      <div id="popup">
-         <div id="popup-content">
-            <label>매장을 찾으세요</label>
-            <input type="search" name="storeSearch" placeholder="매장명을 입력하세요" required />
-            <button onclick="closePopUp()">닫기</button>
-         </div>
+          </div>
+          <div class="">
+            <button class="button">장바구니 담기</button>
+            <button
+              class="button secondary"
+              type="button"
+              onclick="openPopUp()"
+            >
+              매장 픽업
+            </button>
+          </div>
+          <div class="section">
+            <p>배송: 일반배송</p>
+            <p>결제 혜택: 삼성카드 결제시 최대 5% 할인</p>
+          </div>
+        </div>
       </div>
-      <!-- Scripts -->
-      <script>
-         function areQueueItParamsPresent() {
-           const requiredParams = [
-             'qitq', 'qitp', 'qitts', 'qitc', 'qite', 'qitrt', 'qith'
-           ];
-         
-           const urlParams = new URLSearchParams(window.location.search);
-           if (requiredParams.every(param => urlParams.has(param) && urlParams.get(param) !== '')) {
-             waitingRoomName = urlParams.get('qite');
-             return true;
-           }
-           return false;
-         }
-         
-         function openPopUp() {
-           waitingRoomFinished = true;
-           waitingRoomFinished2 = false;
-           saveLocalStorage();
-           QueueIt.validateUser();
-         }
-         
-         function open() {
-           document.getElementById('popup').style.display = 'block';
-         }
-         
-         function closePopUp() {
-           document.getElementById('popup').style.display = 'none';
-         }
-         
-         function verifyAccount(event) {
-           if (event) event.preventDefault(); // prevent form submission
-           // Save form data to localStorage
-           saveLocalStorage();
-           // Trigger Queue-it validation
-           waitingRoomFinished = false;
-           waitingRoomFinished2 = true;
-           QueueIt.validateUser();
-         }
+      <!-- Footer Bar -->
+      <div class="footer-bar">
+        <div class="footer-info">
+          <strong>갤럭시 A16 자급제</strong><br />
+          ₩293,000 | 무료배송
+        </div>
+        <button
+          class="footer-button"
+          type="button"
+          id="buy-button"
+          disabled
+          onclick="verifyAccount(event)"
+        >
+          구매하기
+        </button>
+      </div>
+    </form>
+    <!-- Store Search Popup -->
+    <div id="popup">
+      <div id="popup-content">
+        <label>매장을 찾으세요</label>
+        <input
+          type="search"
+          name="storeSearch"
+          placeholder="매장명을 입력하세요"
+          required
+        />
+        <button onclick="closePopUp()">닫기</button>
+      </div>
+    </div>
+    <!-- Scripts -->
+    <script>
+      function areQueueItParamsPresent() {
+        const requiredParams = [
+          "qitq",
+          "qitp",
+          "qitts",
+          "qitc",
+          "qite",
+          "qitrt",
+          "qith",
+        ];
 
-         function saveLocalStorage() {
-         const form = document.getElementById('phone-form');
-         const formData = new FormData(form);
-         const formObject = {};
-         for (const [key, value] of formData.entries()) {
-            formObject[key] = value;
-         }
-         localStorage.setItem('phoneFormData', JSON.stringify(formObject));
-         }
-         
-         function restoreAndSubmitForm() {
-           const storedData = localStorage.getItem('phoneFormData');
-           if (!storedData) return;
-         
-           const formObject = JSON.parse(storedData);
-           const form = document.getElementById('phone-form');
-           for (const key in formObject) {
-             const input = form.elements[key];
-             if (input) input.value = formObject[key];
-           }
-           localStorage.removeItem('phoneFormData');
-           submitForm();
-         }
-         
-         function submitForm() {
-           const form = document.getElementById('phone-form');
-           const formData = new FormData(form);
-           const params = new URLSearchParams();
-         
-           for (const [key, value] of formData.entries()) {
-             params.append(key, value);
-           }
-         
-           const url = 'https://melonaster3.github.io/test2/?' + params.toString();
-           window.location.href = url;
-         }
+        const urlParams = new URLSearchParams(window.location.search);
+        if (
+          requiredParams.every(
+            (param) => urlParams.has(param) && urlParams.get(param) !== ""
+          )
+        ) {
+          waitingRoomName = urlParams.get("qite");
+          return true;
+        }
+        return false;
+      }
 
-         function updateBuyButtonState() {
-          const colorSelected = document.querySelector('input[name="color"]:checked');
-          const storageSelected = document.querySelector('input[name="storage"]:checked');
-          const buyButton = document.getElementById('buy-button');
-          buyButton.disabled = !(colorSelected && storageSelected);
-         }
+      function openPopUp() {
+        waitingRoomFinished = true;
+        waitingRoomFinished2 = false;
+        saveLocalStorage();
+        QueueIt.validateUser();
+        open();
+      }
 
-        document.addEventListener('DOMContentLoaded', function () {
+      function open() {
+        document.getElementById("popup").style.display = "block";
+      }
+
+      function closePopUp() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function verifyAccount(event) {
+        if (event) event.preventDefault(); // prevent form submission
+        // Save form data to localStorage
+        saveLocalStorage();
+        // Trigger Queue-it validation
+        waitingRoomFinished = false;
+        waitingRoomFinished2 = true;
+        QueueIt.validateUser();
+        restoreAndSubmitForm();
+      }
+
+      function saveLocalStorage() {
+        const form = document.getElementById("phone-form");
+        const formData = new FormData(form);
+        const formObject = {};
+        for (const [key, value] of formData.entries()) {
+          formObject[key] = value;
+        }
+        localStorage.setItem("phoneFormData", JSON.stringify(formObject));
+      }
+
+      function restoreAndSubmitForm() {
+        const storedData = localStorage.getItem("phoneFormData");
+        if (!storedData) return;
+
+        const formObject = JSON.parse(storedData);
+        const form = document.getElementById("phone-form");
+        for (const key in formObject) {
+          const input = form.elements[key];
+          if (input) input.value = formObject[key];
+        }
+        localStorage.removeItem("phoneFormData");
+        submitForm();
+      }
+
+      function submitForm() {
+        const form = document.getElementById("phone-form");
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
+
+        for (const [key, value] of formData.entries()) {
+          params.append(key, value);
+        }
+
+        const url = "https://melonaster3.github.io/test2/?" + params.toString();
+        window.location.href = url;
+      }
+
+      function updateBuyButtonState() {
+        const colorSelected = document.querySelector(
+          'input[name="color"]:checked'
+        );
+        const storageSelected = document.querySelector(
+          'input[name="storage"]:checked'
+        );
+        const buyButton = document.getElementById("buy-button");
+        buyButton.disabled = !(colorSelected && storageSelected);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
         updateBuyButtonState();
 
-        const storedData = localStorage.getItem('phoneFormData');
-          if (storedData) {
-             const formObject = JSON.parse(storedData);
+        const storedData = localStorage.getItem("phoneFormData");
+        if (storedData) {
+          const formObject = JSON.parse(storedData);
 
-             // Restore radio button values and styling
-            ['color', 'storage'].forEach(name => {
-               const value = formObject[name];
-               if (value) {
-               const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
-               if (input) {
-                  input.checked = true;
-                  input.closest('label').classList.add('selected');
-               }
-               }
-            });
-
-            updateBuyButtonState();
-         }
-
-
-        if(areQueueItParamsPresent ()) {
-          if(waitingRoomName && waitingRoomName === "javascript") {
-             openPopUp();
-            } else if (waitingRoomName && waitingRoomName === "javascript2") { 
-             restoreAndSubmitForm();
+          // Restore radio button values and styling
+          ["color", "storage"].forEach((name) => {
+            const value = formObject[name];
+            if (value) {
+              const input = document.querySelector(
+                `input[name="${name}"][value="${value}"]`
+              );
+              if (input) {
+                input.checked = true;
+                input.closest("label").classList.add("selected");
+              }
             }
-         }})
+          });
 
+          updateBuyButtonState();
+        }
 
-       document.querySelectorAll('.options').forEach(group => {
-         group.addEventListener('click', function (e) {
-            const label = e.target.closest('label.option-box');
-            if (!label) return;
-
-            const inputs = group.querySelectorAll('input[type="radio"]');
-            inputs.forEach(input => input.closest('label').classList.remove('selected'));
-
-            const input = label.querySelector('input[type="radio"]');
-            if (input) {
-               input.checked = true;
-               input.addEventListener('change', updateBuyButtonState);
-            }
-
-            label.classList.add('selected');
-            updateBuyButtonState(); // Ensure button updates on click
-         });
+        if (areQueueItParamsPresent()) {
+          if (waitingRoomName && waitingRoomName === "javascript") {
+            openPopUp();
+          } else if (waitingRoomName && waitingRoomName === "javascript2") {
+            restoreAndSubmitForm();
+          }
+        }
       });
-      </script>
-   </body>
+
+      document.querySelectorAll(".options").forEach((group) => {
+        group.addEventListener("click", function (e) {
+          const label = e.target.closest("label.option-box");
+          if (!label) return;
+
+          const inputs = group.querySelectorAll('input[type="radio"]');
+          inputs.forEach((input) =>
+            input.closest("label").classList.remove("selected")
+          );
+
+          const input = label.querySelector('input[type="radio"]');
+          if (input) {
+            input.checked = true;
+            input.addEventListener("change", updateBuyButtonState);
+          }
+
+          label.classList.add("selected");
+          updateBuyButtonState(); // Ensure button updates on click
+        });
+      });
+    </script>
+  </body>
 </html>
