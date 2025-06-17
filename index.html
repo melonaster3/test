@@ -318,12 +318,24 @@
       }
 
       function openPopUp() {
-        waitingRoomFinished = true;
-        waitingRoomFinished2 = false;
-        saveLocalStorage();
-        validatingUser().then(() => {
+        if (
+          typeof QueueIt !== "undefined" &&
+          typeof QueueIt.validateUser === "function"
+        ) {
+          const wasUserAlreadyQueued = window.myQueueClient != null;
+
+          waitingRoomFinished = true;
+          waitingRoomFinished2 = false;
+          saveLocalStorage();
+          QueueIt.validateUser();
+
+          const isUserQueuedAfterValidation = window.myQueueClient != null;
+          if (!wasUserAlreadyQueued && !isUserQueuedAfterValidation) {
+            open();
+          }
+        } else {
           open();
-        });
+        }
       }
 
       function open() {
@@ -335,19 +347,28 @@
       }
 
       function verifyAccount(event) {
-        if (event) event.preventDefault(); // prevent form submission
-        // Save form data to localStorage
-        saveLocalStorage();
-        // Trigger Queue-it validation
-        waitingRoomFinished = false;
-        waitingRoomFinished2 = true;
-        validatingUser().then(() => {
-          submitForm();
-        });
-      }
+        if (event) event.preventDefault();
 
-      async function validatingUser() {
-        QueueIt.validateUser();
+        // If QueueIt is available
+        if (
+          typeof QueueIt !== "undefined" &&
+          typeof QueueIt.validateUser === "function"
+        ) {
+          const wasUserAlreadyQueued = window.myQueueClient != null;
+          waitingRoomFinished = false;
+          waitingRoomFinished2 = true;
+          saveLocalStorage();
+          QueueIt.validateUser(); // Will eventually call restoreAndSubmitForm() if a rule matches
+
+          const isUserQueuedAfterValidation = window.myQueueClient != null;
+
+          // If no queue rule matched and no client was created, call restore manually
+          if (!wasUserAlreadyQueued && !isUserQueuedAfterValidation) {
+            restoreAndSubmitForm();
+          }
+        } else {
+          restoreAndSubmitForm();
+        }
       }
 
       function saveLocalStorage() {
