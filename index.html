@@ -341,7 +341,7 @@
         waitingRoomFinished = false;
         waitingRoomFinished2 = true;
         QueueIt.validateUser();
-        restoreAndSubmitForm();
+        submitForm();
       }
 
       function saveLocalStorage() {
@@ -364,7 +364,6 @@
           const input = form.elements[key];
           if (input) input.value = formObject[key];
         }
-        localStorage.removeItem("phoneFormData");
         submitForm();
       }
 
