@@ -321,9 +321,8 @@
         waitingRoomFinished = true;
         waitingRoomFinished2 = false;
         saveLocalStorage();
-        QueueIt.validateUser().then(() => {
-          open();
-        });
+        QueueIt.validateUser();
+        open();
       }
 
       function open() {
@@ -341,9 +340,8 @@
         // Trigger Queue-it validation
         waitingRoomFinished = false;
         waitingRoomFinished2 = true;
-        QueueIt.validateUser().then(() => {
-          restoreAndSubmitForm();
-        });
+        QueueIt.validateUser();
+        restoreAndSubmitForm();
       }
 
       function saveLocalStorage() {
