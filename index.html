@@ -341,6 +341,7 @@
         else {
           open();
         }
+        restoreDate();
       }
       // 팝업 열게 하는 함수
       function open() {
@@ -435,26 +436,7 @@
             restoreAndSubmitForm();
           }
         }
-        // 이 부분도 모두 무시. 폼과 웹사이트용으로 사용됨
-        const storedData = localStorage.getItem("phoneFormData");
-        if (storedData) {
-          const formObject = JSON.parse(storedData);
-
-          ["color", "storage"].forEach((name) => {
-            const value = formObject[name];
-            if (value) {
-              const input = document.querySelector(
-                `input[name="${name}"][value="${value}"]`
-              );
-              if (input) {
-                input.checked = true;
-                input.closest("label").classList.add("selected");
-              }
-            }
-          });
-
-          updateBuyButtonState();
-        }
+        restoreDate();
       });
 
       // 이 부분도 모두 무시. 폼과 웹사이트용으로 사용됨
@@ -478,6 +460,29 @@
           updateBuyButtonState();
         });
       });
+
+      function restoreDate() {
+        // 이 부분도 모두 무시. 폼과 웹사이트용으로 사용됨
+        const storedData = localStorage.getItem("phoneFormData");
+        if (storedData) {
+          const formObject = JSON.parse(storedData);
+
+          ["color", "storage"].forEach((name) => {
+            const value = formObject[name];
+            if (value) {
+              const input = document.querySelector(
+                `input[name="${name}"][value="${value}"]`
+              );
+              if (input) {
+                input.checked = true;
+                input.closest("label").classList.add("selected");
+              }
+            }
+          });
+
+          updateBuyButtonState();
+        }
+      }
     </script>
   </body>
 </html>
