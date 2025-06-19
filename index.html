@@ -329,6 +329,7 @@
           const wasUserAlreadyQueued = window.myQueueClient != null;
           storeTrigger = true; // 매장찾기 대기실 에 대한 트리거, 활성화됨
           addOnTrigger = false; // AddOn에 대한 트리거, 비활성화됨
+          restoreDate();
           saveLocalStorage();
           QueueIt.validateUser(); // 규칙이 일치하면 결국 open()을 호출함
           // 일치하는 큐 트리거가 없고 큐잇 클라이언트가 생성되지 않았다면, 수동으로 오픈을 호출함
@@ -341,7 +342,6 @@
         else {
           open();
         }
-        restoreDate();
       }
       // 팝업 열게 하는 함수
       function open() {
