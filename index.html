@@ -355,6 +355,10 @@
       // 구매 버튼이 실행하는 함수
       function verifyAccount(event) {
         if (event) event.preventDefault();
+        fetch("www.google.com").then((data) => {
+          console.log(data);
+        });
+        /*   if (event) event.preventDefault();
         // 큐잇 클라이언트가 사용 가능한 경우
         if (
           typeof QueueIt !== "undefined" &&
@@ -372,7 +376,7 @@
           }
         } else {
           restoreAndSubmitForm();
-        }
+        } */
       }
 
       // 폰 선택 및 사양을 로컬에 저장하는 함수
